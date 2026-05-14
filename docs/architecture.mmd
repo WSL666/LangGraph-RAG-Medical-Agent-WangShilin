@@ -1,0 +1,34 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	cache_lookup(cache_lookup)
+	stream_cache(stream_cache)
+	intent_route(intent_route)
+	chitchat(chitchat)
+	query_rewrite(query_rewrite)
+	retrieve(retrieve)
+	retrieve_retry(retrieve_retry)
+	generate(generate)
+	save_cache(save_cache)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> cache_lookup;
+	cache_lookup -. &nbsp;miss&nbsp; .-> intent_route;
+	cache_lookup -. &nbsp;hit&nbsp; .-> stream_cache;
+	chitchat --> save_cache;
+	generate --> save_cache;
+	intent_route -. &nbsp;refuse&nbsp; .-> __end__;
+	intent_route -.-> chitchat;
+	intent_route -. &nbsp;medical&nbsp; .-> query_rewrite;
+	query_rewrite --> retrieve;
+	retrieve -.-> generate;
+	retrieve -. &nbsp;retry&nbsp; .-> retrieve_retry;
+	retrieve_retry --> retrieve;
+	stream_cache --> save_cache;
+	save_cache --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

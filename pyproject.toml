@@ -1,0 +1,27 @@
+[project]
+name = "langgraph-rag-medical-agent"
+version = "1.0.0"
+description = "基于 LangGraph 与 RAG 的医疗智能体：意图路由 + 改写 + 混合检索 + 缓存 + 流式生成"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Wang Shilin" }]
+license = { text = "MIT" }
+keywords = ["LangGraph", "RAG", "Medical", "Elasticsearch", "Redis", "Gradio"]
+
+dependencies = [
+    "langgraph>=0.2.50",
+    "langchain-core>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "elasticsearch>=9.0.0",
+    "redis>=5.0.0",
+    "gradio>=5.0.0",
+    "openai>=1.0.0",
+    "tqdm>=4.60.0",
+]
+
+[project.scripts]
+medical-agent = "main:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"

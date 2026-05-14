@@ -1,0 +1,54 @@
+# ============== Python ==============
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+wheels/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ============== Virtual envs ==============
+.venv/
+venv/
+env/
+# 注意：.python-version 与 uv.lock 建议入库，方便复现环境
+
+# ============== Secrets / configs ==============
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# ============== Data / models ==============
+# 默认忽略所有大型 JSON / JSONL 数据集与模型权重；
+# 仓库需要保留的数据文件用 ! 显式放行（见下）
+*.json
+*.jsonl
+*.bak
+*.bak.*
+data/
+models/
+checkpoints/
+
+# 放行：主医疗知识库（约 58MB，构建 ES 索引必需）
+!Elasticsearch_database/medical.json
+!package.json
+
+# ============== Logs / cache ==============
+logs/
+*.log
+.gradio/
+.cache/
+
+# ============== IDE ==============
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
